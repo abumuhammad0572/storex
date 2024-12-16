@@ -4,8 +4,7 @@ class Book {
   final String author;
   final String description;
   final double price;
-  final String imageUrl;
-  final String category;
+  final String image;
 
   Book({
     required this.id,
@@ -13,7 +12,6 @@ class Book {
     required this.author,
     required this.description,
     required this.price,
-    required this.imageUrl,
-    required this.category,
+    required this.image,
   });
 }

@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:storex/models/book.dart';
+import '../models/book.dart'; // Импортируйте модель
 
 class CartProvider with ChangeNotifier {
-// Список товаров в корзине
-  final List<Book> _items = [];
+  final List<Book> _items = []; // Храним объекты типа Book
 
-// Получить товары в корзине
   List<Book> get items => _items;
 
-// Добавить товар в корзину
   void addItem(Book book) {
-    _items.add(book);
-    // Уведомить виджеты, которые зависят от этого состояния
+    if (!_items.any((item) => item.id == book.id)) {
+      _items.add(book);
+      notifyListeners();
+    }
+  }
+
+  void removeItem(String bookId) {
+    _items.removeWhere((item) => item.id == bookId);
     notifyListeners();
   }
 
-// Удалить товар из корзины
-  void removeItem(String id) {
-    _items.removeWhere((book) => book.id == id);
-    notifyListeners();
-  }
-
-// Очистить корзину
   void clearCart() {
     _items.clear();
     notifyListeners();

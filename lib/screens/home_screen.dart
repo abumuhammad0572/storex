@@ -13,11 +13,9 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.pushNamed(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const CartScreen(),
-                ),
+                '/cart',
               );
             },
             icon: const Icon(Icons.shopping_cart),
@@ -31,9 +29,9 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(builder: (context) => BookListScreen()),
+                  '/books',
                 );
               },
               child: const Text('Список книг'),

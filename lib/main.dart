@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:storex/providers/cart_provider.dart';
+import 'package:storex/screens/book_detail_screen.dart';
+import 'package:storex/screens/book_list_screen.dart';
+import 'package:storex/screens/cart_screen.dart';
 import 'package:storex/screens/home_screen.dart';
 
 void main() {
@@ -19,9 +22,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'StoreX',
-      home: HomeScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/books': (context) => BookListScreen(),
+        '/cart': (context) => CartScreen(),
+      },
     );
   }
 }

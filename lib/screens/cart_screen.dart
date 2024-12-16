@@ -3,35 +3,27 @@ import 'package:provider/provider.dart';
 import 'package:storex/providers/cart_provider.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
-    // Получаем доступ к провайдеру
     final cartProvider = Provider.of<CartProvider>(context);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Корзина')),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: cartProvider.items.length,
-              itemBuilder: (ctx, i) => ListTile(
-                title: Text(cartProvider.items[i].title),
-                subtitle: Text('Цена: \$${cartProvider.items[i].price}'),
-                trailing: IconButton(
-                    onPressed: () {
-                      cartProvider.removeItem(cartProvider.items[i].id);
-                    },
-                    icon: const Icon(Icons.delete)),
-              ),
+      appBar: AppBar(title: Text("Корзина")),
+      body: ListView.builder(
+        itemCount: cartProvider.items.length,
+        itemBuilder: (ctx, i) {
+          final book = cartProvider.items[i];
+          return ListTile(
+            title: Text(book.title),
+            subtitle: Text("Цена: \$${book.price}"),
+            trailing: IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                cartProvider.removeItem(book.id);
+              },
             ),
-          ),
-          ElevatedButton(
-            onPressed: cartProvider.clearCart,
-            child: const Text('Очистить корзину'),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
